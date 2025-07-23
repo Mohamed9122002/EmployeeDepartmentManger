@@ -10,6 +10,8 @@ $routes = [
     '/employee/children' => 'employeeChildren.php',
     '/employee/deleteWife'=> 'deleteWife.php',
     '/employee/deleteChild' => 'deleteChildren.php',
+    '/select/employee'=> 'selectEmployee.php',
+    '/select/Details'=> 'Details.php',
     
 ];
 
