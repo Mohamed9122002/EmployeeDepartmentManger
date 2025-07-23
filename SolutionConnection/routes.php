@@ -8,7 +8,9 @@ $routes = [
     '/employee/details' => 'Details.php',
     '/employee/wives' => 'employeeWives.php',
     '/employee/children' => 'employeeChildren.php',
-
+    '/employee/deleteWife'=> 'deleteWife.php',
+    '/employee/deleteChild' => 'deleteChildren.php',
+    
 ];
 
 

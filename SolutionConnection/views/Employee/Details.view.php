@@ -1,12 +1,12 @@
 <?php require __DIR__ . '/../partials/head.php'; ?>
 <?php require __DIR__ . '/../partials/nav.php'; ?>
 <main>
-       <div class="m-5">
+    <div class="m-5">
         <a href="/employee/wives"
             class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
             CreateEmployeeWife
         </a>
-                <a href="/employee/children"
+        <a href="/employee/children"
             class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
             CreateEmployeeChildren
         </a>
@@ -23,6 +23,7 @@
                 <th class="px-4 py-2 text-left text-sm font-semibold">WifeName </th>
                 <th class="px-4 py-2 text-left text-sm font-semibold">ChildName</th>
                 <th class="px-4 py-2 text-left text-sm font-semibold">ChildNationalId</th>
+                <th class="px-4 py-2">Actions</th>
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
@@ -34,7 +35,12 @@
                     <td class="px-4 py-2 text-sm text-gray-800"><?= htmlspecialchars($row['WifeNationalId']) ?></td>
                     <td class="px-4 py-2 text-sm text-gray-800"><?= htmlspecialchars($row['ChildName']) ?></td>
                     <td class="px-4 py-2 text-sm text-gray-800"><?= htmlspecialchars($row['ChildNationalId']) ?></td>
-    
+                    <td class="px-4 py-2 text-center">
+                        <a href="/employee/deleteChild?id=<?= $row['ChildId'] ?>"
+                            class="bg-red-700 hover:bg-red-600 text-white py-1 px-3 rounded mr-2">Delete Child</a>
+                        <a href="/employee/deleteWife?id=<?= $row['WifeId'] ?>"
+                            class="bg-red-700 hover:bg-red-600 text-white py-1 px-3 rounded mr-2">Delete Wife</a>
+                    </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
