@@ -4,7 +4,10 @@ $routes = [
     '/' => 'Employee.php',
     '/department' => 'department.php',
     '/employee/create'=> 'createEmployee.php',
-    '/employee/edit' => 'editEmployee.php'
+    '/employee/edit' => 'editEmployee.php',
+    '/employee/details' => 'Details.php',
+    '/employee/wives' => 'employeeWives.php',
+    '/employee/children' => 'employeeChildren.php',
 
 ];
 

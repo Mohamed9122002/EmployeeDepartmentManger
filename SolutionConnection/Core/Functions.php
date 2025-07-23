@@ -39,4 +39,8 @@ function mssql_close($conn)
 {
     sqlsrv_close($conn);
 }
+function executeQuery($pdo, $query, $params) {
+    $stmt = $pdo->prepare($query);
+    return $stmt->execute($params);
+}
 
