@@ -44,3 +44,70 @@ ALTER TABLE Children CHECK CONSTRAINT ALL;
 ALTER TABLE Wives CHECK CONSTRAINT ALL;
 DBCC CHECKIDENT ('Children', RESEED, 0);
 DBCC CHECKIDENT ('Wives', RESEED, 0);
+
+Go
+Create PROCEDURE  SP_GetEmployeesFilter
+    @EmployeeId int Null ,
+    @EmployeeName nVARCHAR(100) Null,
+    @HireDate date Null,
+    @NationalityId int  Null 
+	As 
+	Begin
+	Select
+	    E.Id,
+        E.EmployeeName,
+        E.Email,
+        E.HireDate,
+        N.NameArabic AS NationalityArabic,
+        N.NameEnglish AS NationalityEnglish
+	From Employees E
+	Left join Nationalities N on E.NationalityId = N.Id
+	Where (@EmployeeId is null or E.Id =@EmployeeId)
+	and (@EmployeeName IS NULL OR E.EmployeeName LIKE '%' + @EmployeeName + '%')
+	and (@HireDate IS NULL OR E.HireDate = @HireDate)
+	 and (@NationalityId IS NULL OR E.NationalityId = @NationalityId)
+	end 
+
+	Select * From Employees;
+	Select * From Wives;
+	Select * From Children;
+	Select * From Nationalities
+
+	Go
+ALTER PROCEDURE sp_GetAllEmployeesWithLang
+    @Lang NVARCHAR(2) = 'ar'
+AS
+BEGIN
+    SELECT 
+        e.Id,
+        e.EmployeeName,
+        e.Email,
+        e.HireDate,
+        e.Age,
+        e.Salary,
+        e.DepartmentId,
+        e.NationalityId,
+
+        CASE 
+            WHEN @Lang = 'en' THEN n.NameEnglish
+            ELSE n.NameArabic
+        END AS Nationality
+    FROM Employees e
+    LEFT JOIN Nationalities n ON e.NationalityId = n.Id;
+END
+Go
+exec sp_GetAllEmployeesWithLang 'ar'
+
+ALTER TABLE Nationalities 
+ALTER COLUMN NameArabic NVARCHAR(100)
+
+SELECT 
+    E.Id,
+    E.EmployeeName,
+    E.Email,
+    E.HireDate,
+    N.NameArabic AS NationalityArabic,
+    N.NameEnglish 
+FROM Employees E
+LEFT JOIN Nationalities N ON E.NationalityId = N.Id
+WHERE E.Id =  2;

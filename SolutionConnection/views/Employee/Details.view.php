@@ -23,6 +23,7 @@
                 <th class="px-4 py-2 text-left text-sm font-semibold">WifeName </th>
                 <th class="px-4 py-2 text-left text-sm font-semibold">ChildName</th>
                 <th class="px-4 py-2 text-left text-sm font-semibold">ChildNationalId</th>
+                <th class="px-4 py-2 text-left text-sm font-semibold">Nationality</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
         </thead>
@@ -35,6 +36,7 @@
                     <td class="px-4 py-2 text-sm text-gray-800"><?= htmlspecialchars($row['WifeNationalId']) ?></td>
                     <td class="px-4 py-2 text-sm text-gray-800"><?= htmlspecialchars($row['ChildName']) ?></td>
                     <td class="px-4 py-2 text-sm text-gray-800"><?= htmlspecialchars($row['ChildNationalId']) ?></td>
+                    <td class="px-4 py-2 text-sm text-gray-800"><?= htmlspecialchars($nationality) ?></td>
                     <td class="px-4 py-2 text-center">
                         <a href="/employee/deleteChild?id=<?= $row['ChildId'] ?>"
                             class="bg-red-700 hover:bg-red-600 text-white py-1 px-3 rounded mr-2">Delete Child</a>
