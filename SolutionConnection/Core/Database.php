@@ -13,7 +13,9 @@ ini_set('pdo_sqlsrv.client_buffer_max_kb_size', '524288');
 $connectionInfo = [
     "Database" => $db_name,
     "UID" => $db_user,
-    "PWD" => $db_pass
+    "PWD" => $db_pass,
+    "CharacterSet" => "UTF-8",
+    // "CharacterSet" => "UTF-8", // Uncomment if needed for character se
 ];
 
 // Create connection

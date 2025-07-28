@@ -1,6 +1,8 @@
 <?php
+header("Content-Type: text/html; charset=UTF-8");
+
 session_start();
-$lang = $_SESSION['lang'] ?? 'en';
+$lang = $_SESSION['lang'] ?? 'ar';
 require_once __DIR__ . '/../Core/Database.php';
 require_once __DIR__ . '/../Core/Functions.php';
 $empId = $_GET['employeeId'] ?? null;
@@ -30,10 +32,20 @@ ORDER BY W.Id, C.Id", [$empId]);
 
 
 $nationalityId = $_GET['nationalityId'] ?? null;
-$sql = "SELECT Id, NameArabic, NameEnglish FROM Nationalities WHERE Id = ?";
-$result = mssql_query($sql , [$nationalityId]); ;
+
+// 
+$sql = "SELECT 
+            e.Id, 
+            e.EmployeeName, 
+            n.NameArabic, 
+            n.NameEnglish 
+        FROM Employees e 
+        JOIN Nationalities n ON e.NationalityId = n.Id WHERE e.NationalityId = ?";
+$result = mssql_query($sql , [$nationalityId]);
 $nationality = '';
 if ($row = mssql_fetch_assoc($result)) {
     $nationality = $lang == 'en' ? $row['NameEnglish'] : $row['NameArabic'];
+    echo $nationality;
+
 }
 require "views/Employee/Details.view.php";
