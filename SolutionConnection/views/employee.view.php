@@ -75,5 +75,24 @@
             <?php endwhile; ?>
         </tbody>
     </table>
+    <div class="flex justify-center mt-6 space-x-2">
+        <?php
+        $range = 1; 
+        $start = max(1, $page - $range);
+        $end = min($total_pages, $page + $range);
+    
+        if ($page > 1) {
+            echo "<a href='?page=" . ($page - 1) . "' class='px-3 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300'>← Previous</a>";
+        }
+        for ($i = $start; $i <= $end; $i++) {
+            $active = $i == $page ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300';
+            echo "<a href='?page=$i' class='px-3 py-1 rounded $active'>$i</a>";
+        }
+        if ($page < $total_pages) {
+            echo "<a href='?page=" . ($page + 1) . "' class='px-3 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300'>→ Next</a>";
+        }
+        ?>
+    </div>
 </main>
+
 <?php require('partials/footer.php') ?>

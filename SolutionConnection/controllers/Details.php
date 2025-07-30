@@ -45,7 +45,7 @@ $result = mssql_query($sql , [$nationalityId]);
 $nationality = '';
 if ($row = mssql_fetch_assoc($result)) {
     $nationality = $lang == 'en' ? $row['NameEnglish'] : $row['NameArabic'];
-    echo $nationality;
+    // echo $nationality;
 
 }
 require "views/Employee/Details.view.php";

@@ -1,4 +1,4 @@
-use Company;
+﻿use Company;
 Create Table Wives 
 (
 Id int Primary key Identity(1,1),
@@ -89,8 +89,8 @@ BEGIN
         e.NationalityId,
 
         CASE 
-            WHEN @Lang = 'en' THEN n.NameEnglish
-            ELSE n.NameArabic
+                WHEN @Lang = 'ar' THEN NameArabic COLLATE Arabic_CI_AI
+            ELSE n.NameEnglish
         END AS Nationality
     FROM Employees e
     LEFT JOIN Nationalities n ON e.NationalityId = n.Id;
@@ -111,3 +111,16 @@ SELECT
 FROM Employees E
 LEFT JOIN Nationalities N ON E.NationalityId = N.Id
 WHERE E.Id =  2;
+
+Select * From Nationalities;
+
+ALTER TABLE Nationalities
+ALTER COLUMN NameArabic NVARCHAR(100) COLLATE Arabic_CI_AS;
+
+INSERT INTO Nationalities (NameArabic, NameEnglish)
+VALUES (N'مصر', 'Egypt')
+
+UPDATE Employees
+SET NationalityId = 6
+
+SELECT NameArabic FROM Nationalities;
